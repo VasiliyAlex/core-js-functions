@@ -18,7 +18,8 @@
  *
  */
 function getCurrentFunctionName() {
-  throw new Error('Not implemented');
+  const result = getCurrentFunctionName.name;
+  return result;
 }
 
 /**
