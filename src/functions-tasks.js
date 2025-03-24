@@ -93,7 +93,7 @@ function getPowerFunction(exponent) {
  */
 function getPolynom(...coefficients) {
   if (coefficients.length === 0) return null;
-  return function (x) {
+  return function getPolynomFunction(x) {
     return coefficients.reduce((acc, coeff, index) => {
       return acc + coeff * x ** (coefficients.length - index - 1);
     }, 0);
@@ -114,8 +114,17 @@ function getPolynom(...coefficients) {
  *   ...
  *   memoizer() => the same random number  (next run, returns the previous cached result)
  */
-function memoize(/* func */) {
-  throw new Error('Not implemented');
+function memoize(func) {
+  let cache;
+  let isCalled = false;
+
+  return function memoizedFunction() {
+    if (!isCalled) {
+      cache = func();
+      isCalled = true;
+    }
+    return cache;
+  };
 }
 
 /**
